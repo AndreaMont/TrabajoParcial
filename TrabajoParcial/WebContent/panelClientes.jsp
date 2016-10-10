@@ -47,7 +47,7 @@
 		</div>
 		<div class="row">
 			<p style="text-align: right;">
-				<a href="newp" class="btn btn-success">Agregar</a>
+				<a href="listCliente" class="btn btn-success">Agregar</a>
 
 			</p>
 			<table class="table table-striped table-bordered">
@@ -57,8 +57,8 @@
 						<th>NOMBRES</th>
 						<th>APELLIDOS</th>
 						<th>DNI</th>
-						<th>TELEFONO</th>
 						<th>FECHANAC</th>
+						<th>TELEFONO</th>
 						<th>USUARIO</th>
 						<th>CONTRASEÑA</th>
 					</tr>
@@ -67,17 +67,20 @@
 
 
 
-					<c:forEach var="p" items="${requestScope.lispeliculas}">
+					<c:forEach var="p" items="${requestScope.listclientes}">
 						<tr>
-							<td>${p.id}</td>
+							<td>${p.idcliente}</td>
 							<td>${p.nombre}</td>
-							<td>${p.precio}</td>
-							<td>${p.stock}</td>
-							<td>${p.imagen}</td>
-							<td>${p.idcategoria.nombre}</td>
-							<td width=350><a class="btn" href="readp?id=${p.id }">Detalle</a>
-								&nbsp; <a class="btn btn-success" href="editp?id=${p.id}">Editar</a>
-								&nbsp; <a class="btn btn-danger" href="removep?id=${p.id}">Eliminar</a>
+							<td>${p.apellido}</td>
+							<td>${p.dni}</td>
+							<td>${p.fechaNacimiento}</td>
+							<td>${p.telefono}</td>
+							<td>${p.usuario}</td>
+							<td>${p.contrasenia}</td>
+							<td width=350><a class="btn" href="readp?id=${p.idcliente }">Detalle</a>
+								&nbsp; <a class="btn btn-success" href="editp?id=${p.idcliente}">Editar</a>
+								&nbsp; <a class="btn btn-danger" href="removep?id=${p.idcliente}">Eliminar</a>
+								</tr>
 					</c:forEach>
 
 				</tbody>

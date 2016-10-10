@@ -1,14 +1,12 @@
 package com.seguro.dto;
 
-import java.util.Date;
-
 public class Cita {
 	
 	private int idcita;
 	private Inspector inspector;
 	private Cliente cliente;
 	private String direccion;
-	private Date fecha;
+	private String fecha;
 	
 	
 	public int getIdcita() {
@@ -35,12 +33,13 @@ public class Cita {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	
 	
 	
 	

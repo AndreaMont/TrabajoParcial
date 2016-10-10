@@ -2,8 +2,10 @@ package com.seguro.dao.impl;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.seguro.dao.IClientedao;
@@ -30,7 +32,7 @@ public class Clientedao implements IClientedao{
 		cs.setString(3, o.getApellido());
 		cs.setInt(4, o.getDni());
 		cs.setInt(5, o.getTelefono());
-		//cs.setDate(6, o.getFechaNacimiento());
+		cs.setString(6, o.getFechaNacimiento());
 		cs.setString(7, o.getUsuario());
 		cs.setString(8, o.getContrasenia());
 		
@@ -68,7 +70,14 @@ public class Clientedao implements IClientedao{
 	@Override
 	public List<Cliente> getAll() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		String query="{call sp_list_cliente()}";
+		List<Cliente> lista=new ArrayList<>();
+		Connection cn=Dbconnection.getInstance();
+		
+		CallableStatement cs=cn.prepareCall(query);
+		ResultSet rs=cs.executeQuery();
+		while(rs.next()) lista.add(mapRow(rs));
+		return lista;
 	}
 
 	@Override
@@ -80,8 +89,8 @@ public class Clientedao implements IClientedao{
 		c.setNombre(rs.getString(2));
 		c.setApellido(rs.getString(3));
 		c.setDni(rs.getInt(4));
-		c.setTelefono(rs.getInt(5));
-		//c.setFechaNacimiento(rs.getDate(6));
+		c.setFechaNacimiento(rs.getString(5));	
+		c.setTelefono(rs.getInt(6));
 		c.setUsuario(rs.getString(7));
 		c.setContrasenia(rs.getString(8));
 		return c;

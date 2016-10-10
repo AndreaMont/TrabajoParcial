@@ -60,30 +60,22 @@
 			<form class="form-horizontal" action="insertp" method="post">
 
 				<div class="control-group">
-					<label class="control-label">NOMBRE</label>
+					<label class="control-label">DIRECCION</label>
 					<div class="controls">
-						<input type="text" name="nombre" id="nombre"
-							placeholder="Ingresar nombre" value="">
+						<input type="text" name="dirección" id="nombre"
+							placeholder="Ingresar dirección" value="">
 					</div>
 				</div>
 
 				<div class="control-group">
-					<label class="control-label">PRECIO</label>
+					<label class="control-label">FECHA</label>
 					<div class="controls">
-						<input type="text" name="precio" id="precio"
-							placeholder="Ingresar precio" value="">
+						<input type="text" name="fecha" id="precio"
+							placeholder="Ingresar fecha" value="">
 					</div>
 				</div>
 
-				<div class="control-group">
-					<label class="control-label">STOCK</label>
-					<div class="controls">
-						<input type="text" name="stock" id="stock"
-							placeholder="Ingresar stock" value="">
-					</div>
-				</div>
-
-				<div class="control-group">
+				<!-- <div class="control-group">
 
 					<label class="control-label">IMAGEN:</label>
 					<div class="controls">
@@ -122,7 +114,7 @@
 
 					</div>
 
-				</div>
+				</div> -->
 
 				<div class="form-actions">
 					<button type="submit" class="btn btn-success">Agregar</button>

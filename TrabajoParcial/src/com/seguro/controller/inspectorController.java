@@ -11,28 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.seguro.dto.Usuario;
-import com.seguro.model.usuarioModel;
+import com.seguro.dto.Inspector;
+import com.seguro.model.inspectorModel;
 
 /**
- * Servlet implementation class usuarioController
+ * Servlet implementation class inspectorController
  */
-@WebServlet({ "/login", "/register", "/logout" })
-public class usuarioController extends HttpServlet {
+@WebServlet({ "/listInspector", "/insertInspector", "/deleteInspector", "/updateInspector", "/loginInspector", "/logoutInspector" })
+public class inspectorController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private usuarioModel umodel = null;
-	private Usuario u = new Usuario();
-	private String destino = "index.jsp";
 	
-	private HttpSession session = null;
+	private inspectorModel imodel=null;
+	private Inspector i=new Inspector();
+	private String destino="index.jsp";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public usuarioController() {
+	private HttpSession session=null;
+    public inspectorController() {
         super();
         // TODO Auto-generated constructor stub
-        umodel = new usuarioModel();
+        imodel=new inspectorModel();
     }
 
 	/**
@@ -40,27 +40,22 @@ public class usuarioController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		session = request.getSession(true);// Crear session
+
 		String path = request.getServletPath();
 		
-		try{
+		try {
 			switch (path) {
-			case "/login":
-				String correo=request.getParameter("correo");
-				String password=request.getParameter("password");
+			case "/loginInspector":
+				String usuario=request.getParameter("usuario");
+				String contrasenia=request.getParameter("contrasenia");
 				
-				u=umodel.inicioSesion(correo, password);
+				i=imodel.inicioSesion(usuario,contrasenia);
 				
-				if(u!=null){
-					session.setAttribute("usuario", u);
+				if(i!=null){
+					session.setAttribute("usuario", i);
 					session.setAttribute("ID", session.getId());
-					switch (u.getTipoUsuario()) {
-					case "INSPECTOR":
-						destino="panelinspector.jsp";						
-						break;
-					case "CLIENTE":
-						destino="catalogoc.jsp";
-						break;
-					}
+					destino="cliente.jsp";
 					
 				}else{
 					request.setAttribute("mensaje","credenciales no validas");
@@ -69,12 +64,12 @@ public class usuarioController extends HttpServlet {
 				
 				break;
 
-			case "/register":
+			case "/insertInspector":
 				insert(request);
 				destino="index.jsp";				
 				break;
 			
-			case "/logout":
+			case "/logoutInspector":
 				session.invalidate();
 				destino="index.jsp";
 				break;
@@ -86,17 +81,18 @@ public class usuarioController extends HttpServlet {
 		
 		RequestDispatcher rd=request.getRequestDispatcher(destino);
 		rd.forward(request, response);
+		
+
 	}
 
-	private void insert(HttpServletRequest request) throws SQLException {
+	protected void insert(HttpServletRequest request) throws ServletException, IOException,SQLException {
 		// TODO Auto-generated method stub
-		u.setApellidos(request.getParameter("apellido"));
-		u.setNombres(request.getParameter("nombre"));
-		u.setCorreo(request.getParameter("correo"));
-		u.setPassword(request.getParameter("password"));
+		i.setApellido(request.getParameter("apellido"));
+		i.setNombre(request.getParameter("nombre"));
+		i.setUsuario(request.getParameter("usuario"));
+		i.setContrasenia(request.getParameter("contrasenia"));
 		
-		umodel.registrarUsuario(u);
-		
+		imodel.registrarInspector(i);
 	}
 
 	/**

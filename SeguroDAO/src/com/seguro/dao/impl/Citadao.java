@@ -31,7 +31,7 @@ public class Citadao implements ICitadao{
 		cs.setString(2, o.getInspector().getNombre());
 		cs.setString(3, o.getCliente().getNombre());
 		cs.setString(4, o.getDireccion());
-		//cs.setDate(5, o.getFecha());
+		cs.setString(5, o.getFecha());
 		
 		cs.execute();
 
@@ -80,7 +80,7 @@ public class Citadao implements ICitadao{
 		i.setNombre(rs.getString(2));
 		cl.setNombre(rs.getString(3));
 		c.setDireccion(rs.getString(4));
-		c.setFecha(rs.getDate(5));
+		c.setFecha(rs.getString(5));
 		
 		return c;
 	}

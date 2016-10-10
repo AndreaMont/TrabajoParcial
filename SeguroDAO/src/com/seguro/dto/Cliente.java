@@ -8,7 +8,7 @@ public class Cliente {
 	private String apellido;
 	private int dni;
 	private int telefono;
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	private String usuario;
 	private String contrasenia;
 	
@@ -43,10 +43,10 @@ public class Cliente {
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
 	}
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public String getUsuario() {
