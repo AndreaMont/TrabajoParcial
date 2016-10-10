@@ -25,9 +25,12 @@
 			</div>
 			<ul class="nav navbar-nav">
 				<li><a href="panelInspector.jsp">Inicio</a></li>
-				<li  class="active"><a href="panelClientes.jsp">Clientes</a></li>
-				<li ><a href="panelCitas.jsp">Citas</a></li>
-				<li><a href="panelCotizacion.jsp">Cotización</a></li>
+				<li   class="active"><a href="panelClientes.jsp">Clientes</a></li>
+				<li><a href="panelVehiculos.jsp">Vehiculos</a></li>
+				<li><a href="panelInspector.jsp">Inspector</a></li>
+				<li><a href="panelCitas.jsp">Citas</a></li>
+				<li><a href="panelCotizacion.jsp">Cotización Inicial</a></li>
+				<li><a href="panelAprobacion.jsp">Cotización Final</a></li>
 				<li><a href="panelPoliza.jsp">Polizas</a></li>
 				
 
@@ -47,7 +50,7 @@
 		</div>
 		<div class="row">
 			<p style="text-align: right;">
-				<a href="listCliente" class="btn btn-success">Agregar</a>
+				<a href="agregarCliente.jsp" class="btn btn-success">Agregar</a>
 
 			</p>
 			<table class="table table-striped table-bordered">
@@ -57,10 +60,12 @@
 						<th>NOMBRES</th>
 						<th>APELLIDOS</th>
 						<th>DNI</th>
-						<th>FECHANAC</th>
+						
 						<th>TELEFONO</th>
+						<th>FECHANAC</th>
 						<th>USUARIO</th>
 						<th>CONTRASEÑA</th>
+						<th>ACCIONES</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -73,14 +78,14 @@
 							<td>${p.nombre}</td>
 							<td>${p.apellido}</td>
 							<td>${p.dni}</td>
-							<td>${p.fechaNacimiento}</td>
 							<td>${p.telefono}</td>
+							<td>${p.fechaNacimiento}</td>
 							<td>${p.usuario}</td>
 							<td>${p.contrasenia}</td>
-							<td width=350><a class="btn" href="readp?id=${p.idcliente }">Detalle</a>
+							<td width=350><a class="btn" href="readp?id=${p.idcliente}">Detalle</a>
 								&nbsp; <a class="btn btn-success" href="editp?id=${p.idcliente}">Editar</a>
 								&nbsp; <a class="btn btn-danger" href="removep?id=${p.idcliente}">Eliminar</a>
-								</tr>
+								</td></tr>
 					</c:forEach>
 
 				</tbody>

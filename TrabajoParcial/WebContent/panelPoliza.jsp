@@ -24,11 +24,14 @@
 				<a class="navbar-brand" href="#">Seguros Falabella</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li><a href="panelInspector.jsp">Inicio</a></li>
-				<li  class="active"><a href="panelClientes.jsp">Clientes</a></li>
-				<li ><a href="panelCitas.jsp">Citas</a></li>
-				<li><a href="panelCotizacion.jsp">Cotización</a></li>
-				<li><a href="panelPoliza.jsp">Polizas</a></li>
+					<li><a href="panelInspector.jsp">Inicio</a></li>
+				<li ><a href="panelClientes.jsp">Clientes</a></li>
+				<li><a href="panelVehiculos.jsp">Vehiculos</a></li>
+				<li ><a href="panelInspector.jsp">Inspector</a></li>
+				<li><a href="panelCitas.jsp">Citas</a></li>
+				<li  ><a href="panelCotizacion.jsp">Cotización Inicial</a></li>
+				<li><a href="panelAprobacion.jsp">Cotización Final</a></li>
+				<li  class="active"><a href="panelPoliza.jsp">Polizas</a></li>
 				
 
 			</ul>

@@ -12,18 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 import com.seguro.dto.Cliente;
 import com.seguro.model.clienteModel;
 
 /**
  * Servlet implementation class clienteController
  */
-@WebServlet({ "/insertCliente", "/updateCliente", "/deleteCliente", "/loginCliente", "/logoutCliente" })
+@WebServlet({ "/insertCliente", "/updateCliente", "/deleteCliente", "/loginCliente", "/logoutCliente", "/newCliente" })
 public class clienteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private clienteModel cmodel = null;
 	private Cliente c = new Cliente();
-	private String destino = "index.jsp";
+	private String destino = "/panelClientes.jsp";
 	private String mensaje=null;
 
 	/**
@@ -32,10 +33,16 @@ public class clienteController extends HttpServlet {
 	
 	private HttpSession session=null;
     
+	@Override
+	public void init() throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+		cmodel = new clienteModel();
+	}
 	public clienteController() {
 		super();
 		// TODO Auto-generated constructor stub
-		cmodel = new clienteModel();
+		
 	}
 
 	/**
@@ -72,7 +79,12 @@ public class clienteController extends HttpServlet {
 
 			case "/insertCliente":
 				insert(request);
-				destino="cliente.jsp";				
+				destino="panelClientes.jsp";				
+				break;
+				
+			case "/newCliente":
+				mensaje=list(request,cmodel);
+				destino="agregarCliente.jsp";				
 				break;
 			
 			case "/logoutCliente":
@@ -108,6 +120,25 @@ public class clienteController extends HttpServlet {
 		c.setContrasenia(request.getParameter("contrasenia"));
 		
 		cmodel.registrarCliente(c);
+	}
+
+	protected void update(HttpServletRequest request) throws ServletException, IOException, SQLException {
+		// TODO Auto-generated method stub
+		Cliente cli = new Cliente();
+		int idcliente = Integer.parseInt(request.getParameter("idCliente"));
+		String nombre = request.getParameter("nombre");
+		String apellido=request.getParameter("apellido");
+		int dni=Integer.parseInt(request.getParameter("dni"));
+
+		int telefono=Integer.parseInt(request.getParameter("telefono"));
+		String fecha=request.getParameter("fecha");
+		String usuario=request.getParameter("usuario");
+		String contrasenia=request.getParameter("contrasenia");
+		
+		cli.setIdcliente(idcliente);
+		cli.setNombre(nombre);
+
+		cmodel.updateCliente(cli);
 	}
 
 	protected String list(HttpServletRequest request,clienteModel climodel)

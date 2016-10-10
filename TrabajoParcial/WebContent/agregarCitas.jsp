@@ -58,22 +58,39 @@
 		</div>
 		<div class="row">
 			<form class="form-horizontal" action="insertp" method="post">
+			
+			<div class="control-group">
+					<label class="control-label">ID INSPECTOR</label>
+					<div class="controls">
+						<input type="text" name="idinspector" id="idinspector"
+							placeholder="Ingresar id inspector" value="">
+					</div>
+				</div>
 
+<div class="control-group">
+					<label class="control-label">FECHA</label>
+					<div class="controls">
+						<input type="text" name="fecha" id="fecha"
+							placeholder="Ingresar fecha" value="">
+					</div>
+				</div>
 				<div class="control-group">
-					<label class="control-label">DIRECCION</label>
+					<label class="control-label">LUGAR</label>
 					<div class="controls">
 						<input type="text" name="dirección" id="nombre"
 							placeholder="Ingresar dirección" value="">
 					</div>
 				</div>
-
+				
 				<div class="control-group">
-					<label class="control-label">FECHA</label>
+					<label class="control-label">ID COTIZACION INICIAL</label>
 					<div class="controls">
-						<input type="text" name="fecha" id="precio"
-							placeholder="Ingresar fecha" value="">
+						<input type="text" name="cotizacionInicial" id="cotizacionInicial"
+							placeholder="Ingresar id icotizacion inicial" value="">
 					</div>
 				</div>
+
+				
 
 				<!-- <div class="control-group">
 

@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.seguro.dao.IVehiculodao;
 import com.seguro.ds.Dbconnection;
+
 import com.seguro.dto.Vehiculo;
 
 public class Vehiculodao implements IVehiculodao{
@@ -19,13 +20,13 @@ public class Vehiculodao implements IVehiculodao{
 		String insert = "{call sp_insert_vehiculo(?,?,?,?,?,?,?,?)}";
 		
 		Connection cn = Dbconnection.getInstance();
-		//cn.setAutoCommit(true);
+		cn.setAutoCommit(true);
 
 		CallableStatement cs = cn.prepareCall(insert);
 
 		cs.registerOutParameter(1, java.sql.Types.VARCHAR);
-		cs.setString(2, o.getMarca());
-		cs.setString(3, o.getModelo());
+		cs.setString(2, o.getModelo());
+		cs.setString(3, o.getMarca());
 		cs.setString(4, o.getPlaca());
 		cs.setString(5, o.getTipoCaja());
 		cs.setInt(6, o.getAnio());
@@ -49,6 +50,8 @@ public class Vehiculodao implements IVehiculodao{
 	public void update(Vehiculo o) throws SQLException {
 		// TODO Auto-generated method stub
 		
+		
+		
 	}
 
 	@Override
@@ -66,7 +69,14 @@ public class Vehiculodao implements IVehiculodao{
 	@Override
 	public List<Vehiculo> getAll() throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		String query="{call sp_list_vehiculo()}";
+		List<Vehiculo> lista=new ArrayList<>();
+		Connection cn=Dbconnection.getInstance();
+		
+		CallableStatement cs=cn.prepareCall(query);
+		ResultSet rs=cs.executeQuery();
+		while(rs.next()) lista.add(mapRow(rs));
+		return lista;
 	}
 
 	@Override
@@ -75,8 +85,9 @@ public class Vehiculodao implements IVehiculodao{
 		Vehiculo v = new Vehiculo();
 		
 		v.setIdvehiculo(rs.getInt(1));
-		v.setMarca(rs.getString(2));
-		v.setModelo(rs.getString(3));
+		
+		v.setModelo(rs.getString(2));
+		v.setMarca(rs.getString(3));
 		v.setPlaca(rs.getString(4));
 		v.setTipoCaja(rs.getString(5));
 		v.setAnio(rs.getInt(6));
