@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+<title>Insert title here</title>
+<th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+
+<div class="container">
+	<th:block th:include="fragments/header2 :: header"></th:block> 
+
+		<!-- Division para buscar por nombre -->
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" th:action="@{/medicamentos}" method="post">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="name">Buscar por Nombre:</label>
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="nombre" name="nombre"  pattern="^[a-zA-Z0-9]+$"/>
+						</div>
+						<div class="col-sm-3">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+		<!-- Division para buscar por tipo de medicamento -->
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" th:object="${medicamento}" th:action="@{/medicamentostipomedicamentos}" method="post">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="name">Buscar por Tipo de Medicamentos:</label>
+						</div>
+						<div class="col-sm-6">
+							<select class="form-control" th:field="*{tipomedicamento.id_tipomedicamento}">
+								<option th:each="tipo:${tipomedicamentos}" th:value="${tipo.id_tipomedicamento}"
+									th:text="${tipo.tipo}"></option>
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		
+
+
+
+		<h2>Lista Medicamentos</h2>
+		<a href="#" th:href="@{/medicamento/new}">Crear Medicamento</a>
+		<table class="table table-striped">
+			<tr>
+				<th>Medicamento ID</th>
+				<th>Tipo medicamento</th>
+				<th>Nombre</th>
+				<th>Fecha Creacion</th>
+				<th>Fecha Vencimiento</th>
+				<th>Composicion</th>
+				<th>Precio Unitario</th>
+				<th>Ver</th>
+				<th>Editar</th>
+				<th>Eliminar</th>
+			</tr>
+			<tr th:each="medicamento : ${medicamentos}">
+				<td th:text="${medicamento.id_medicamento}">Medicamento ID</td>
+				<td th:text="${medicamento.tipomedicamento.tipo}">Tipo Medicamento</td>
+				<td th:text="${medicamento.nombre}">Nombre</td>
+				<td th:text="${medicamento.f_creacion}">Fecha Creacion</td>
+				<td th:text="${medicamento.f_vencimiento}">Fecha Vencimiento</td>
+				<td th:text="${medicamento.composicion}">Composicion</td>
+				<td th:text="${medicamento.preciounitario}">Precio Unitario</td>
+				<td><a th:href="${'/medicamento/' + medicamento.id_medicamento}">Ver</a></td>
+				<td><a th:href="${'/medicamento/edit/' + medicamento.id_medicamento}">Editar</a></td>
+				<td><a href="#" class="linkDelete" th:id="${medicamento.id_medicamento}">Eliminar</a>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+
+
+	<!-- Modal -->
+	<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Delete Product</h4>
+				</div>
+				<div class="modal-body">
+					<p>Está seguro de eliminar el producto?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="btnDelete" class="btn btn-success">
+						<i class="glyphicon glyphicon-remove-sign"></i> Eliminar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.modal -->
+
+
+	<script type="text/javascript">
+		$(function() {
+
+			var id_medicamento = null;
+
+			$('.linkDelete').on('click', function(e) {
+				e.preventDefault();
+				$('#modalDelete').modal();
+				id_medicamento = $(this).attr('id');
+			});
+
+			$('#btnDelete').on('click', function() {
+				location.href = "/medicamento/delete/" + id_medicamento;
+			});
+
+		});
+	</script>
+
+</body>
+</html>

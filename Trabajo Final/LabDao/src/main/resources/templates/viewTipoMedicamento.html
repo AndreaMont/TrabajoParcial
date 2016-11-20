@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+
+	<title>Insert title here</title>
+	<th:block th:include="fragments/headerinc :: head"></th:block> 
+</head>
+<body>
+
+<div class="container">
+		<th:block th:include="fragments/header2 :: header"></th:block>
+
+		<h2>Detalle Tipo Medicamento</h2>
+		<div>
+			<form class="form-horizontal" th:object="${tipomedicamento}">
+				<input type="hidden" th:field="*{id_tipomedicamento}" />
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Tipo:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{tipo}" />
+					</div>
+				</div>
+
+
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-10">
+						<input type="button" class="btn btn-primary"
+							onclick="location.href='/tipomedicamentos/'" value="Volver" />
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+
+<title>Insert title here</title>
+<th:block th:include="fragments/headerinc :: head"></th:block> 
+</head>
+<body>
+
+<div class="container">
+	<th:block th:include="fragments/header2 :: header"></th:block> 
+
+		<!-- Division para buscar por nombre -->
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" th:action="@{/farmacias}" method="post">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="name">Buscar por Nombre:</label>
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="nombre" name="nombre"/>
+						</div>
+						<div class="col-sm-3">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+		<!-- Division para buscar por distrito -->
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" th:object="${farmacia}" th:action="@{/farmaciasdistrito}" method="post">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="name">Buscar por Distrito:</label>
+						</div>
+						<div class="col-sm-6">
+							<select class="form-control" th:field="*{distrito.id_distrito}">
+								<option th:each="distrito:${distritos}" th:value="${distrito.id_distrito}"
+									th:text="${distrito.nombre}"></option>
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		
+
+
+
+		<h2>Lista Farmacias</h2>
+		<a href="#" th:href="@{/farmacia/new}">Crear Farmacia</a>
+		<table class="table table-striped">
+			<tr>
+				<th>Farmacia ID</th>
+				<th>Distrito</th>
+				<th>RUC</th>
+				<th>Nombre</th>
+				<th>Telefono</th>
+				<th>Direccion</th>
+				
+				<th>Ver</th>
+				<th>Editar</th>
+				<th>Eliminar</th>
+			</tr>
+			<tr th:each="f : ${farmacias}">
+				<td th:text="${f.id_farmacia}">Farmacia ID</td>
+				<td th:text="${f.distrito.nombre}">Distrito</td>
+				<td th:text="${f.ruc}">RUC</td>
+				<td th:text="${f.nombre}">Nombre</td>
+				<td th:text="${f.telefono}">Telefono</td>
+				<td th:text="${f.direccion}">Direccion</td>
+				<td><a th:href="${'/farmacia/' + f.id_farmacia}">Ver</a></td>
+				<td><a th:href="${'/farmacia/edit/' + f.id_farmacia}">Editar</a></td>
+				<td><a href="#" class="linkDelete" th:id="${f.id_farmacia}">Eliminar</a>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+
+
+	<!-- Modal -->
+	<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Eliminar Farmacia</h4>
+				</div>
+				<div class="modal-body">
+					<p>Está seguro de eliminar la farmacia?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="btnDelete" class="btn btn-success">
+						<i class="glyphicon glyphicon-remove-sign"></i> Eliminar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.modal -->
+
+
+	<script type="text/javascript">
+		$(function() {
+
+			var id_farmacia = null;
+
+			$('.linkDelete').on('click', function(e) {
+				e.preventDefault();
+				$('#modalDelete').modal();
+				id_farmacia= $(this).attr('id');
+			});
+
+			$('#btnDelete').on('click', function() {
+				location.href = "/farmacia/delete/" + id_farmacia;
+			});
+
+		});
+	</script>
+
+</body>
+</html>

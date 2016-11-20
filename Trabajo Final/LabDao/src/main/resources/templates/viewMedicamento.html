@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+
+
+	<title>Insert title here</title>
+	<th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+<div class="container">
+		<!--/*/ <th:block th:include="fragments/header2 :: header"></th:block> /*/-->
+
+		<h2>Detalle Medicamento</h2>
+		<div>
+			<form class="form-horizontal" th:object="${medicamento}">
+				<input type="hidden" th:field="*{id_medicamento}" />
+				
+
+			<div class="form-group">
+					<label class="col-sm-2 control-label">Tipo Medicamento:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control"
+							th:field="*{tipomedicamento.tipo}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Nombre:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{nombre}" />
+					</div>
+				</div>
+				
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Composicion</label>
+					<div class="col-sm-10">
+						<textarea class="form-control" rows="4" cols="25"
+							th:field="*{composicion}"></textarea>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Fecha Creacion:</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" th:field="*{f_creacion}" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Fecha Vencimiento:</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" th:field="*{f_vencimiento}" />
+					</div>
+				</div>
+	
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Precio Unitario:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{preciounitario}" />
+					</div>
+				</div>
+				
+				
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label"></label>
+					<div class="col-sm-10">
+						<input type="button" class="btn btn-primary"
+							onclick="location.href='/medicamentos/'" value="Volver" />
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+
+</body>
+</html>

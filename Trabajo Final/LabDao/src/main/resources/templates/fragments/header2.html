@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+<!--Author: HAMP -->
+</head>
+<body>
+
+	<div class="container">
+		<!-- Indica que es un fragment de nombre header solo contiene un NAV 
+		esto lo saque de : http://getbootstrap.com/components/#navbar-->
+		<div th:fragment="header">
+			<nav class="navbar navbar-default">
+				<!-- dentro del fragmento coloco un nav(menu)-->
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#" th:href="@{/}">Inicio</a>
+						<ul class="nav navbar-nav">
+							<li><a href="#" th:href="@{/tipomedicamentos}">Tipo Medicamentos</a></li>
+							<li><a href="#" th:href="@{/medicamentos}">Medicamentos</a></li>
+							<li><a href="#" th:href="@{/distritos}">Distritos</a></li>
+								<li><a href="#" th:href="@{/farmacias}">Farmacias</a></li>
+								<li><a href="#" th:href="@{/ordenes}">Orden</a></li>		
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>	
+		
+	</div>
+</body>
+</html>

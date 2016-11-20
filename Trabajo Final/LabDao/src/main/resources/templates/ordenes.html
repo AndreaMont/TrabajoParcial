@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+<title>Insert title here</title>
+<th:block th:include="fragments/headerinc :: head"></th:block>
+</head>
+<body>
+
+
+<div class="container">
+	<th:block th:include="fragments/header2 :: header"></th:block> 
+
+		<!-- Division para buscar por nombre -->
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" th:action="@{/fechasenviorange}" method="post">
+					<div class="row">
+						<div class="col-sm-2">
+							<label for="name">Fecha envio min:</label>
+						</div>
+						<div class="col-sm-2">
+							<input type="date" step="any" class="form-control" id="fe1" name="fe1"  required="required"/>
+						</div>
+						
+						<div class="col-sm-2">
+							<label for="name">Fecha envio max:</label>
+						</div>
+						<div class="col-sm-2">
+							<input type="date" step="any" class="form-control" id="fe2" name="fe2" required="required" />
+						</div>
+						<div class="col-sm-2">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+	
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" th:object="${orden}" th:action="@{/ordenesfarmacia}" method="post">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="name">Buscar por Farmacia:</label>
+						</div>
+						<div class="col-sm-6">
+							<select class="form-control" th:field="*{farmacia.id_farmacia}">
+								<option th:each="f:${farmacias}" th:value="${f.id_farmacia}"
+									th:text="${f.nombre}"></option>
+							</select>
+						</div>
+						<div class="col-sm-3">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+						</div>
+					</div>
+				</form>
+				
+				Cantidad de ordenes por farmacia<p th:text="${cantiordenes}">1</p>
+			</div>
+		</div>
+
+		
+
+
+
+		<h2>Lista Ordenes</h2>
+		<a href="#" th:href="@{/orden/new}">Crear Ordenes</a>
+		<table class="table table-striped">
+			<tr>
+				<th>Orden ID</th>
+				<th>Farmacia</th>
+				<th>Medicamento</th>
+				<th>Fecha Orden</th>
+				<th>Fecha Envio</th>
+				<th>Direccion</th>
+				<th>Cantidad</th>
+				<th>MontoTotal</th>
+				<th>Ver</th>
+				<th>Editar</th>
+				<th>Eliminar</th>
+			</tr>
+			<tr th:each="orden : ${ordenes}">
+				<td th:text="${orden.id_orden}">Orden ID</td>
+				<td th:text="${orden.farmacia.nombre}">Farmacia</td>
+				<td th:text="${orden.medicamento.nombre}">Medicamento</td>
+				<td th:text="${orden.f_orden}">Fecha Orden</td>
+				<td th:text="${orden.f_envio}">Fecha Envio</td>
+				<td th:text="${orden.direccion}">Direccion</td>
+				<td th:text="${orden.cantidad}">Cantidad</td>
+				<td th:text="${orden.montototal}">Monto Total</td>
+				<td><a th:href="${'/orden/' + orden.id_orden}">Ver</a></td>
+				<td><a th:href="${'/orden/edit/' + orden.id_orden}">Editar</a></td>
+				<td><a href="#" class="linkDelete" th:id="${orden.id_orden}">Eliminar</a>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+
+
+	<!-- Modal -->
+	<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Eliminar Orden</h4>
+				</div>
+				<div class="modal-body">
+					<p>Está seguro de eliminar la orden?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button id="btnDelete" class="btn btn-success">
+						<i class="glyphicon glyphicon-remove-sign"></i> Eliminar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.modal -->
+
+
+	<script type="text/javascript">
+		$(function() {
+
+			var id_orden = null;
+
+			$('.linkDelete').on('click', function(e) {
+				e.preventDefault();
+				$('#modalDelete').modal();
+				id_orden = $(this).attr('id');
+			});
+
+			$('#btnDelete').on('click', function() {
+				location.href = "/orden/delete/" + id_orden;
+			});
+
+		});
+	</script>
+
+</body>
+</html>

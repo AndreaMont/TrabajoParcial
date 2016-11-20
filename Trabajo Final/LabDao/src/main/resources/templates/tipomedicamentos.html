@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="es">
+
+<title>Insert title here</title>
+<th:block th:include="fragments/headerinc :: head"></th:block> 
+</head>
+<body>
+<div class="container">
+		<th:block th:include="fragments/header2 :: header"></th:block>
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form role="form" th:action="@{/tipomedicamentos}" method="post">
+					<div class="row">
+						<div class="col-sm-3">
+							<label for="name">Buscar por Nombre:</label>
+						</div>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" id="tipo" name="tipo"  pattern="^[a-zA-Z0-9]+$"/>
+						</div>
+						<div class="col-sm-3">
+							<input type="submit" value="Buscar" class="btn btn-success" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+		<h2>Lista Tipo Medicamentos</h2>
+		<a href="#" th:href="@{/tipoMedicamento/new}">Crear Tipo Medicamento</a>
+		<table class="table table-striped">
+			<tr>
+				<th>Id</th>
+				<th>Tipo</th>
+				 <th>Ver</th>
+				<th>Editar</th>
+				<th>Eliminar</th>
+			</tr>
+			<tr th:each="t: ${tipomedicamentos}">
+				<td th:text="${t.id_tipomedicamento}">ID Tipo Medicamento</td>
+				<td th:text="${t.tipo}">Tipo</td>
+			  <td><a th:href="${'/tipomedicamento/' + t.id_tipomedicamento}">Ver</a></td>
+				<td><a th:href="${'/tipomedicamento/edit/' + t.id_tipomedicamento}">Editar</a></td>
+				<td><a href="#" class="linkDelete" th:id="${t.id_tipomedicamento}">Eliminar</a>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+
+	<!-- Division Modal -->
+	<div id="modalDelete" class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Eliminar Tipo Medicamento</h4>
+				</div>
+				<div class="modal-body">
+					<p>Estas seguro de eliminar el tipo de medicamento?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button id="btnDelete" class="btn btn-success">
+						<i class="glyphicon glyphicon-remove-sign"></i> Eliminar
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Funcion JavaScript que recupera el valor del idCategory y lo envia a la URL: /category/delete/ del controller-->
+	<script type="text/javascript">
+		$(function() {
+
+			var id_tipomedicamento = null;
+
+			$('.linkDelete').on('click', function(e) {
+				e.preventDefault();
+				$('#modalDelete').modal();
+				id_tipomedicamento = $(this).attr('id');
+			});
+
+			$('#btnDelete').on('click', function() {
+				location.href = "/tipomedicamento/delete/" + id_tipomedicamento;
+			});
+
+		});
+	</script>
+</body>
+</html>
