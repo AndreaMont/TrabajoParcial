@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="es">
-<title>Insert title here</title>
+<title>PHRYMA</title>
 <th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
@@ -16,17 +16,17 @@
 				<form role="form" th:action="@{/fechasenviorange}" method="post">
 					<div class="row">
 						<div class="col-sm-2">
-							<label for="name">Fecha envio min:</label>
+							<label for="name">Fecha orden min:</label>
 						</div>
 						<div class="col-sm-2">
-							<input type="date" step="any" class="form-control" id="fe1" name="fe1"  required="required"/>
+							<input type="date" step="any" class="form-control" id="fo1" name="fo1"  required="required"/>
 						</div>
 						
 						<div class="col-sm-2">
-							<label for="name">Fecha envio max:</label>
+							<label for="name">Fecha orden max:</label>
 						</div>
 						<div class="col-sm-2">
-							<input type="date" step="any" class="form-control" id="fe2" name="fe2" required="required" />
+							<input type="date" step="any" class="form-control" id="fo2" name="fo2" required="required" />
 						</div>
 						<div class="col-sm-2">
 							<input type="submit" value="Buscar" class="btn btn-success" />
