@@ -1,50 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="es">
-	<title>PHRYMA</title>
-	<th:block th:include="fragments/headerinc :: head"></th:block>
+<title>PHRYMA</title>
+<th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
 
-<div class="container">
-		 <th:block th:include="fragments/header2 :: header"></th:block> 
+	<div class="container">
+		<th:block th:include="fragments/header2 :: header"></th:block>
 
 		<h2>Editar Farmacia</h2>
 		<div>
 			<form class="form-horizontal" th:object="${farmacia}"
 				th:action="@{/farmacia}" method="post">
 				<input type="hidden" id="hdnId_farmacia" th:field="*{id_farmacia}" />
+
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Distrito:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" th:field="*{distrito.nombre}" />
-					</div>
-				</div>
-					<div class="form-group">
 					<label class="col-sm-2 control-label">Nombre:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" th:field="*{nombre}" />
 					</div>
 				</div>
-					<div class="form-group">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Distrito:</label>
+					<div class="col-sm-10">
+						<select class="form-control" th:field="*{distrito.id_distrito}">
+							<option th:each="distrito:${distritos}"
+								th:value="${distrito.id_distrito}" th:text="${distrito.nombre}"></option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group">
 					<label class="col-sm-2 control-label">RUC:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" th:field="*{ruc}" />
 					</div>
 				</div>
-					<div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Telefono:</label>
 					<div class="col-sm-10">
 						<input type="number" class="form-control" th:field="*{telefono}" />
 					</div>
 				</div>
-					<div class="form-group">
+				<div class="form-group">
 					<label class="col-sm-2 control-label">Direccion:</label>
 					<div class="col-sm-10">
 						<input type="text" class="form-control" th:field="*{direccion}" />
 					</div>
 				</div>
-			
+
 
 				<div class="form-group">
 					<label class="col-sm-2 control-label"></label>

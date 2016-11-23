@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lab.entities.Distrito;
+
 import com.lab.entities.Farmacia;
-import com.lab.entities.Medicamento;
+
 import com.lab.service.DistritoService;
 import com.lab.service.FarmaciaService;
 

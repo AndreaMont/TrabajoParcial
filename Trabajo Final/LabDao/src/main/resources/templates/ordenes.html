@@ -7,26 +7,28 @@
 <body>
 
 
-<div class="container">
-	<th:block th:include="fragments/header2 :: header"></th:block> 
+	<div class="container">
+		<th:block th:include="fragments/header2 :: header"></th:block>
 
 		<!-- Division para buscar por nombre -->
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<form role="form" th:action="@{/fechasenviorange}" method="post">
+				<form role="form" th:action="@{/fechasordenrange}" method="post">
 					<div class="row">
 						<div class="col-sm-2">
 							<label for="name">Fecha orden min:</label>
 						</div>
 						<div class="col-sm-2">
-							<input type="date" step="any" class="form-control" id="fo1" name="fo1"  required="required"/>
+							<input type="date" step="any" class="form-control" id="fo1"
+								name="fo1" required="required" />
 						</div>
-						
+
 						<div class="col-sm-2">
 							<label for="name">Fecha orden max:</label>
 						</div>
 						<div class="col-sm-2">
-							<input type="date" step="any" class="form-control" id="fo2" name="fo2" required="required" />
+							<input type="date" step="any" class="form-control" id="fo2"
+								name="fo2" required="required" />
 						</div>
 						<div class="col-sm-2">
 							<input type="submit" value="Buscar" class="btn btn-success" />
@@ -37,10 +39,11 @@
 		</div>
 
 
-	
+
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<form role="form" th:object="${orden}" th:action="@{/ordenesfarmacia}" method="post">
+				<form role="form" th:object="${orden}"
+					th:action="@{/ordenesfarmacia}" method="post">
 					<div class="row">
 						<div class="col-sm-3">
 							<label for="name">Buscar por Farmacia:</label>
@@ -56,12 +59,13 @@
 						</div>
 					</div>
 				</form>
-				
-				Cantidad de ordenes por farmacia<p th:text="${cantiordenes}">1</p>
+
+				Cantidad de ordenes por farmacia
+				<p th:text="${cantiordenes}">1</p>
 			</div>
 		</div>
 
-		
+
 
 
 

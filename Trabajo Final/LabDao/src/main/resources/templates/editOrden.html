@@ -14,20 +14,28 @@
 			<form class="form-horizontal" th:object="${orden}"
 				th:action="@{/orden}" method="post">
 				<input type="hidden" id="hdnId_orden" th:field="*{id_orden}" />
-				<div class="form-group">
-					<label class="col-sm-2 control-label"> Medicamento:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control"
-							th:field="*{medicamento.nombre}" />
-					</div>
-				</div>
-				<div class="form-group">
+				
+					<div class="form-group">
 					<label class="col-sm-2 control-label">Farmacia:</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control"
-							th:field="*{farmacia.nombre}" />
+						<select class="form-control" th:field="*{farmacia.id_farmacia}">
+							<option th:each="f:${farmacias}" th:value="${f.id_farmacia}"
+								th:text="${f.nombre}"></option>
+						</select>
 					</div>
 				</div>
+					<div class="form-group">
+					<label class="col-sm-2 control-label">Medicamento:</label>
+					<div class="col-sm-10">
+						<select class="form-control"
+							th:field="*{medicamento.id_medicamento}">
+							<option th:each="m:${medicamentos}"
+								th:value="${m.id_medicamento}" th:text="${m.nombre}"></option>
+						</select>
+					</div>
+				</div>
+				
+				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Fecha orden:</label>
 					<div class="col-sm-10">
@@ -52,13 +60,7 @@
 						<input type="number" class="form-control" th:field="*{cantidad}" />
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Monto Total:</label>
-					<div class="col-sm-10">
-						<input type="number" class="form-control" th:field="*{montototal}" />
-					</div>
-				</div>
-
+				
 
 
 				<div class="form-group">

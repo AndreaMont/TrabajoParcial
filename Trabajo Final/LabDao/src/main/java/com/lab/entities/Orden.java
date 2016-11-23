@@ -1,6 +1,5 @@
 package com.lab.entities;
 
-import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,36 +8,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.Digits;
+
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 @Entity
-@Table(name="orden")
-public class Orden implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class Orden {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id_orden;
 	
-	@Column(name = "f_orden")
+	@Column(name="f_orden")
 	private String f_orden;
 	
-	@Column(name = "f_envio")
+	@Column(name="f_envio")
 	private String f_envio;
 	
-	@Column(name = "direccion")
-	@Size(min = 5, max =20)
+	@Column(name="direccion")
+	@Size(min=5,max=50)
 	private String direccion;
 	
-	@Column(name = "cantidad")
+	@Column(name="cantidad")
 	@Min(1)
-	@Max(100)
+	@Max(1000)
 	private int cantidad;
 	
 	
+	@Column(name="montototal")
 	private double montototal;
 
 	@ManyToOne

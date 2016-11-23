@@ -7,8 +7,8 @@
 <body>
 
 
-<div class="container">
-	<th:block th:include="fragments/header2 :: header"></th:block> 
+	<div class="container">
+		<th:block th:include="fragments/header2 :: header"></th:block>
 
 		<!-- Division para buscar por nombre -->
 		<div class="panel panel-default">
@@ -19,7 +19,8 @@
 							<label for="name">Buscar por Nombre:</label>
 						</div>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="nombre" name="nombre"  pattern="^[a-zA-Z0-9]+$"/>
+							<input type="text" class="form-control" id="nombre" name="nombre"
+								pattern="^[a-zA-Z0-9]+$" />
 						</div>
 						<div class="col-sm-3">
 							<input type="submit" value="Buscar" class="btn btn-success" />
@@ -33,15 +34,17 @@
 		<!-- Division para buscar por tipo de medicamento -->
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<form role="form" th:object="${medicamento}" th:action="@{/medicamentostipomedicamentos}" method="post">
+				<form role="form" th:object="${medicamento}"
+					th:action="@{/medicamentostipomedicamentos}" method="post">
 					<div class="row">
 						<div class="col-sm-3">
 							<label for="name">Buscar por Tipo de Medicamentos:</label>
 						</div>
 						<div class="col-sm-6">
-							<select class="form-control" th:field="*{tipomedicamento.id_tipomedicamento}">
-								<option th:each="tipo:${tipomedicamentos}" th:value="${tipo.id_tipomedicamento}"
-									th:text="${tipo.tipo}"></option>
+							<select class="form-control"
+								th:field="*{tipomedicamento.id_tipomedicamento}">
+								<option th:each="tipo:${tipomedicamentos}"
+									th:value="${tipo.id_tipomedicamento}" th:text="${tipo.tipo}"></option>
 							</select>
 						</div>
 						<div class="col-sm-3">
@@ -52,7 +55,7 @@
 			</div>
 		</div>
 
-		
+
 
 
 
@@ -61,8 +64,8 @@
 		<table class="table table-striped">
 			<tr>
 				<th>Medicamento ID</th>
-				<th>Tipo medicamento</th>
 				<th>Nombre</th>
+				<th>Tipo medicamento</th>
 				<th>Fecha Creacion</th>
 				<th>Fecha Vencimiento</th>
 				<th>Composicion</th>
@@ -73,16 +76,19 @@
 			</tr>
 			<tr th:each="medicamento : ${medicamentos}">
 				<td th:text="${medicamento.id_medicamento}">Medicamento ID</td>
-				<td th:text="${medicamento.tipomedicamento.tipo}">Tipo Medicamento</td>
 				<td th:text="${medicamento.nombre}">Nombre</td>
+				<td th:text="${medicamento.tipomedicamento.tipo}">Tipo
+					Medicamento</td>
 				<td th:text="${medicamento.f_creacion}">Fecha Creacion</td>
 				<td th:text="${medicamento.f_vencimiento}">Fecha Vencimiento</td>
 				<td th:text="${medicamento.composicion}">Composicion</td>
 				<td th:text="${medicamento.preciounitario}">Precio Unitario</td>
-				<td><a th:href="${'/medicamento/' + medicamento.id_medicamento}">Ver</a></td>
-				<td><a th:href="${'/medicamento/edit/' + medicamento.id_medicamento}">Editar</a></td>
-				<td><a href="#" class="linkDelete" th:id="${medicamento.id_medicamento}">Eliminar</a>
-				</td>
+				<td><a
+					th:href="${'/medicamento/' + medicamento.id_medicamento}">Ver</a></td>
+				<td><a
+					th:href="${'/medicamento/edit/' + medicamento.id_medicamento}">Editar</a></td>
+				<td><a href="#" class="linkDelete"
+					th:id="${medicamento.id_medicamento}">Eliminar</a></td>
 			</tr>
 		</table>
 

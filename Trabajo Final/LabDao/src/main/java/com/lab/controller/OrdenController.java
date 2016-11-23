@@ -17,19 +17,19 @@ import com.lab.service.FarmaciaService;
 import com.lab.service.MedicamentoService;
 import com.lab.service.OrdenService;
 
+
 @Controller
 public class OrdenController {
 
 	
 	@Autowired
 	private OrdenService ordenService;
-	
 	@Autowired
 	private FarmaciaService farmaciaService;
 	@Autowired
 	private MedicamentoService medicamentoService;
 	
-	private double precio;
+
 	
 	@RequestMapping(value = "/ordenes", method = RequestMethod.GET)
 	public String ordenes(Model model){
@@ -49,7 +49,7 @@ public class OrdenController {
 	}
 	
 	@RequestMapping(value = "/orden", method = RequestMethod.POST)
-	public String saveNewOrden(@Valid Orden o, BindingResult result, Model model){
+	public String saveNewOrden(@Valid Orden orden, BindingResult result, Model model){
 		try{
 			if(result.hasErrors()){
 				model.addAttribute("farmacias", farmaciaService.listAllFarmacia());
@@ -58,15 +58,23 @@ public class OrdenController {
 				model.addAttribute("message", result.toString());
 				return "newOrden";
 			}
-			precio=ordenService.calcularImporteTotal(o);
-			o.setMontototal(precio);
-			ordenService.saveOrden(o);
-			model.addAttribute("message", "El monto total="+precio);
-			return "ordenes";
+			
+			//montototal=ordenService.calcularMontoTotal(orden);
+			//orden.setMontototal(montototal);
+			
+			Medicamento medicamento;
+			medicamento=medicamentoService.getMedicamentoById(orden.getMedicamento().getId_medicamento());
+	
+			double montototal=orden.getCantidad()*medicamento.getPreciounitario();
+			orden.setMontototal(montototal);
+			ordenService.saveOrden(orden);
+			//model.addAttribute("message", "El monto total="+precio);
+			return "redirect:/ordenes";
 		} catch (Exception e){
 			model.addAttribute("farmacias", farmaciaService.listAllFarmacia());
 			model.addAttribute("medicamentos", medicamentoService.listAllMedicamentos());
-			model.addAttribute("message",e.getMessage());
+			//model.addAttribute("message",e.getMessage());
+			//System.out.println(e.getMessage());
 			return "newOrden";
 		}
 	}
@@ -97,16 +105,6 @@ public class OrdenController {
 		return "redirect:/ordenes";
 	}
 	
-		
-	 
-	@RequestMapping(value = "/fechasenviorange", method = RequestMethod.POST)
-	public String listarordenesRangee(Model model, @RequestParam String fe1,@RequestParam String fe2){
-		
-		model.addAttribute("ordenes",ordenService.findByFechaEnvio(fe1, fe2));
-	
-		
-		return "ordenes";
-	}
 	
 	@RequestMapping(value = "/fechasordenrange", method = RequestMethod.POST)
 	public String listarordenesRangeo(Model model, @RequestParam String fo1,@RequestParam String fo2){
@@ -122,6 +120,8 @@ public class OrdenController {
 	
 		model.addAttribute("ordenes",ordenService.getOrdenByFarmacia(orden.getFarmacia().getId_farmacia()));
 		model.addAttribute("farmacias", farmaciaService.listAllFarmacia());
+		model.addAttribute("ordenes", ordenService.getFarmaciaOrderByMontoTotalDESC());
+		model.addAttribute("cantiordenes", ordenService.countOrdenByFarmacia());
 		return "ordenes";
 	}
 	

@@ -3,12 +3,12 @@
 <head lang="es">
 
 <title>PHRYMA</title>
-<th:block th:include="fragments/headerinc :: head"></th:block> 
+<th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
 
-<div class="container">
-	<th:block th:include="fragments/header2 :: header"></th:block> 
+	<div class="container">
+		<th:block th:include="fragments/header2 :: header"></th:block>
 
 		<!-- Division para buscar por nombre -->
 		<div class="panel panel-default">
@@ -19,7 +19,7 @@
 							<label for="name">Buscar por Nombre:</label>
 						</div>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="nombre" name="nombre"/>
+							<input type="text" class="form-control" id="nombre" name="nombre" />
 						</div>
 						<div class="col-sm-3">
 							<input type="submit" value="Buscar" class="btn btn-success" />
@@ -33,15 +33,16 @@
 		<!-- Division para buscar por distrito -->
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<form role="form" th:object="${farmacia}" th:action="@{/farmaciasdistrito}" method="post">
+				<form role="form" th:object="${farmacia}"
+					th:action="@{/farmaciasdistrito}" method="post">
 					<div class="row">
 						<div class="col-sm-3">
 							<label for="name">Buscar por Distrito:</label>
 						</div>
 						<div class="col-sm-6">
 							<select class="form-control" th:field="*{distrito.id_distrito}">
-								<option th:each="distrito:${distritos}" th:value="${distrito.id_distrito}"
-									th:text="${distrito.nombre}"></option>
+								<option th:each="distrito:${distritos}"
+									th:value="${distrito.id_distrito}" th:text="${distrito.nombre}"></option>
 							</select>
 						</div>
 						<div class="col-sm-3">
@@ -52,7 +53,7 @@
 			</div>
 		</div>
 
-		
+
 
 
 
@@ -61,21 +62,23 @@
 		<table class="table table-striped">
 			<tr>
 				<th>Farmacia ID</th>
+				<th>Nombre</th>
 				<th>Distrito</th>
 				<th>RUC</th>
-				<th>Nombre</th>
+
 				<th>Telefono</th>
 				<th>Direccion</th>
-				
+
 				<th>Ver</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
 			</tr>
 			<tr th:each="f : ${farmacias}">
 				<td th:text="${f.id_farmacia}">Farmacia ID</td>
+				<td th:text="${f.nombre}">Nombre</td>
 				<td th:text="${f.distrito.nombre}">Distrito</td>
 				<td th:text="${f.ruc}">RUC</td>
-				<td th:text="${f.nombre}">Nombre</td>
+
 				<td th:text="${f.telefono}">Telefono</td>
 				<td th:text="${f.direccion}">Direccion</td>
 				<td><a th:href="${'/farmacia/' + f.id_farmacia}">Ver</a></td>
@@ -123,7 +126,7 @@
 			$('.linkDelete').on('click', function(e) {
 				e.preventDefault();
 				$('#modalDelete').modal();
-				id_farmacia= $(this).attr('id');
+				id_farmacia = $(this).attr('id');
 			});
 
 			$('#btnDelete').on('click', function() {

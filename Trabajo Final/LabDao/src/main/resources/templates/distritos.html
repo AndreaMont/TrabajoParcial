@@ -3,10 +3,10 @@
 <head lang="es">
 
 <title>PHRYMA</title>
-<th:block th:include="fragments/headerinc :: head"></th:block> 
+<th:block th:include="fragments/headerinc :: head"></th:block>
 </head>
 <body>
-<div class="container">
+	<div class="container">
 		<th:block th:include="fragments/header2 :: header"></th:block>
 		<div class="panel panel-default">
 			<div class="panel-body">
@@ -16,7 +16,7 @@
 							<label for="name">Buscar por Nombre:</label>
 						</div>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" id="nombre" name="nombre"  />
+							<input type="text" class="form-control" id="nombre" name="nombre" />
 						</div>
 						<div class="col-sm-3">
 							<input type="submit" value="Buscar" class="btn btn-success" />
@@ -33,14 +33,14 @@
 			<tr>
 				<th>Id</th>
 				<th>Distrito</th>
-				 <th>Ver</th>
+				<th>Ver</th>
 				<th>Editar</th>
 				<th>Eliminar</th>
 			</tr>
 			<tr th:each="d: ${distritos}">
 				<td th:text="${d.id_distrito}">ID Distrito</td>
 				<td th:text="${d.nombre}">Nombre Distrito</td>
-			  <td><a th:href="${'/distrito/' + d.id_distrito}">Ver</a></td>
+				<td><a th:href="${'/distrito/' + d.id_distrito}">Ver</a></td>
 				<td><a th:href="${'/distrito/edit/' + d.id_distrito}">Editar</a></td>
 				<td><a href="#" class="linkDelete" th:id="${d.id_distrito}">Eliminar</a>
 				</td>

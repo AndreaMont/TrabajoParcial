@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lab.entities.Medicamento;
-import com.lab.entities.TipoMedicamento;
+
 @Repository
 @Transactional
 public interface MedicamentoRepository extends CrudRepository<Medicamento, Integer> {
