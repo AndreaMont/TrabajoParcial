@@ -16,4 +16,5 @@ public interface MedicamentoService {
 		
 	Iterable<Medicamento> getMedicamentoByTipoMedicamento(int id);
 
+	int countMedicamentoByTipo(int id);
 }

@@ -19,4 +19,7 @@ public interface MedicamentoRepository extends CrudRepository<Medicamento, Integ
 	@Query("Select m from Medicamento m where m.tipomedicamento.id_tipomedicamento = :tipomedicamentoId")
 	List<Medicamento> findByCodeTipoMedicamento(@Param("tipomedicamentoId") int tipomedicamentoId);
 		
+	
+	@Query("Select count(m) from Medicamento m where m.tipomedicamento.id_tipomedicamento = :tipomedicamentoId")
+	int countMedicamento(@Param("tipomedicamentoId") int tipomedicamentoId);
 }

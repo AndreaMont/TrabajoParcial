@@ -47,6 +47,12 @@ public class MedicamentoServiceImpl implements MedicamentoService{
 		// TODO Auto-generated method stub
 		return medicamentoRepository.findOne(id);
 	}
+
+	@Override
+	public int countMedicamentoByTipo(int id) {
+		// TODO Auto-generated method stub
+		return medicamentoRepository.countMedicamento(id);
+	}
 	
 
 }

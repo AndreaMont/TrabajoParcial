@@ -94,7 +94,7 @@ public class MedicamentoController {
 		
 		model.addAttribute("medicamentos", medicamentoService.getMedicamentoByTipoMedicamento(medicamento.getTipoMedicamento().getId_tipomedicamento()));
 		model.addAttribute("tipomedicamentos", tipoMedicamentoService.listAllTipoMedicamentos());
-		
+		model.addAttribute("cantidadtipomedicamento",medicamentoService.countMedicamentoByTipo(medicamento.getTipoMedicamento().getId_tipomedicamento()));
 		return "medicamentos";
 	}
 

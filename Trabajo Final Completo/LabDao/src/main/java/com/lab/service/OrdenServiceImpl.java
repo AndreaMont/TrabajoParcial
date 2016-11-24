@@ -44,7 +44,7 @@ public class OrdenServiceImpl implements OrdenService {
 	
 
 	@Override
-	public Iterable<Orden> findByF_ordenBetween(Date date1, Date date2) {
+	public Iterable<Orden> findByF_ordenBetween(String date1, String date2) {
 		// TODO Auto-generated method stub
 		return ordenRepository.findByF_ordenBetween(date1, date2);
 	}

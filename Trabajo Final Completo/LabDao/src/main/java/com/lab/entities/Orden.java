@@ -23,12 +23,10 @@ public class Orden {
 	private int id_orden;
 	
 	@Column(name="f_orden")
-	@Temporal(TemporalType.DATE)
-	private Date f_orden;
+	private String f_orden;
 	
 	@Column(name="f_envio")
-	@Temporal(TemporalType.DATE)
-	private Date f_envio;
+	private String f_envio;
 	
 	@Column(name="direccion")
 	@Size(min=5,max=50)
@@ -68,7 +66,7 @@ public class Orden {
 	}
 
 
-	
+	/*
 	public Date getF_orden() {
 		return f_orden;
 	}
@@ -83,8 +81,29 @@ public class Orden {
 		return f_envio;
 	}
 
+	
 
 	public void setF_envio(Date f_envio) {
+		this.f_envio = f_envio;
+	}*/
+
+
+	public String getF_orden() {
+		return f_orden;
+	}
+
+
+	public void setF_orden(String f_orden) {
+		this.f_orden = f_orden;
+	}
+
+
+	public String getF_envio() {
+		return f_envio;
+	}
+
+
+	public void setF_envio(String f_envio) {
 		this.f_envio = f_envio;
 	}
 

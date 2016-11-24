@@ -1,7 +1,10 @@
 package com.lab.controller;
 
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +66,7 @@ public class OrdenController {
 				return "newOrden";
 			}
 			
-			//montototal=ordenService.calcularMontoTotal(orden);
-			//orden.setMontototal(montototal);
+	
 			
 			Medicamento medicamento;
 			medicamento=medicamentoService.getMedicamentoById(orden.getMedicamento().getId_medicamento());
@@ -111,10 +113,13 @@ public class OrdenController {
 	
 	
 	@RequestMapping(value = "/fechasordenrange", method = RequestMethod.POST)
-	public String listarordenesRangeo(Model model, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") @Temporal(javax.persistence.TemporalType.DATE
-			)Date date1,
-			@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") @Temporal(javax.persistence.TemporalType.DATE) Date date2)
+	public String listarordenesRangeo(Model model, @RequestParam String date1,
+			@RequestParam String date2)
 	{
+		
+		
+
+		
 		model.addAttribute("ordenes",ordenService.findByF_ordenBetween(date1, date2));
 		model.addAttribute("farmacias", farmaciaService.listAllFarmacia());
 

@@ -18,7 +18,7 @@ public interface OrdenService {
 	
 
 	
-	Iterable<Orden> findByF_ordenBetween(Date date1,Date date2);
+	Iterable<Orden> findByF_ordenBetween(String date1,String date2);
 	
 	Iterable<Orden> getOrdenByFarmacia(int id);
 

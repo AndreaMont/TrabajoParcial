@@ -24,7 +24,7 @@ public interface OrdenRepository extends CrudRepository<Orden, Integer>
 	
 	
 	@Query("select o from Orden o where o.f_orden between :date1 and :date2")
-	List<Orden> findByF_ordenBetween(@Param("date1") @Temporal(TemporalType.DATE) Date date1 ,@Param("date2")@Temporal(TemporalType.DATE) Date date2);
+	List<Orden> findByF_ordenBetween(@Param("date1") String date1 ,@Param("date2") String date2);
 	
 
 	@Query("Select count(o) from Orden o where o.farmacia.id_farmacia = :farmaciaId")
