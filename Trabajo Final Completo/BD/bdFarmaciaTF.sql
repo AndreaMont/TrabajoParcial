@@ -37,7 +37,7 @@ CREATE TABLE `distrito` (
 
 LOCK TABLES `distrito` WRITE;
 /*!40000 ALTER TABLE `distrito` DISABLE KEYS */;
-INSERT INTO `distrito` VALUES (2,'San Martin de Porres'),(3,'sdsad');
+INSERT INTO `distrito` VALUES (2,'San Martin de Porres'),(3,'San Borja');
 /*!40000 ALTER TABLE `distrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -67,7 +67,7 @@ CREATE TABLE `farmacia` (
 
 LOCK TABLES `farmacia` WRITE;
 /*!40000 ALTER TABLE `farmacia` DISABLE KEYS */;
-INSERT INTO `farmacia` VALUES (2,2,'12345678944','Mi Farma',123456787,'Av. Aviacion 2584'),(3,2,'45465465451','fsdfsdf',123456789,'sdsadasd');
+INSERT INTO `farmacia` VALUES (2,2,'12345678944','Mi Farma',123456787,'Av. Aviacion 2584');
 /*!40000 ALTER TABLE `farmacia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `orden` (
 
 LOCK TABLES `orden` WRITE;
 /*!40000 ALTER TABLE `orden` DISABLE KEYS */;
-INSERT INTO `orden` VALUES (2,1,2,'1997-02-15','1997-02-15','sdasd',12,20.00);
+INSERT INTO `orden` VALUES (2,1,2,'1997-02-15','1997-02-15','sdasd',12,180.96);
 /*!40000 ALTER TABLE `orden` ENABLE KEYS */;
 UNLOCK TABLES;
 
