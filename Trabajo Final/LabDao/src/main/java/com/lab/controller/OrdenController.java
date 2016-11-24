@@ -1,8 +1,12 @@
 package com.lab.controller;
 
+import java.util.Date;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Temporal;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -107,9 +111,14 @@ public class OrdenController {
 	
 	
 	@RequestMapping(value = "/fechasordenrange", method = RequestMethod.POST)
-	public String listarordenesRangeo(Model model, @RequestParam String fo1,@RequestParam String fo2){
-		
-		model.addAttribute("ordenes",ordenService.findByFechaOrden(fo1, fo2));
+	public String listarordenesRangeo(Model model, @RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") @Temporal(javax.persistence.TemporalType.DATE
+			)Date date1,
+			@RequestParam @DateTimeFormat(pattern="yyyy-MM-dd") @Temporal(javax.persistence.TemporalType.DATE) Date date2)
+	{
+		model.addAttribute("ordenes",ordenService.findByF_ordenBetween(date1, date2));
+		model.addAttribute("farmacias", farmaciaService.listAllFarmacia());
+
+		model.addAttribute("orden",new Orden());
 	
 		return "ordenes";
 	}
@@ -117,11 +126,11 @@ public class OrdenController {
 	@RequestMapping(value = "/ordenesfarmacia", method = RequestMethod.POST)
 	public String listarOrdenesFarmacia(Model model, Orden orden){
 		
-	
 		model.addAttribute("ordenes",ordenService.getOrdenByFarmacia(orden.getFarmacia().getId_farmacia()));
+		model.addAttribute("ordenes", ordenService.getFarmaciaOrderByMontoTotalDESC(orden.getFarmacia().getId_farmacia()));
+		model.addAttribute("cantiordenes", ordenService.countOrdenByFarmacia(orden.getFarmacia().getId_farmacia()));
 		model.addAttribute("farmacias", farmaciaService.listAllFarmacia());
-		model.addAttribute("ordenes", ordenService.getFarmaciaOrderByMontoTotalDESC());
-		model.addAttribute("cantiordenes", ordenService.countOrdenByFarmacia());
+		
 		return "ordenes";
 	}
 	

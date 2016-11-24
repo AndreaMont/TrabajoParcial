@@ -1,6 +1,8 @@
 package com.lab.entities;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -20,10 +23,12 @@ public class Orden {
 	private int id_orden;
 	
 	@Column(name="f_orden")
-	private String f_orden;
+	@Temporal(TemporalType.DATE)
+	private Date f_orden;
 	
 	@Column(name="f_envio")
-	private String f_envio;
+	@Temporal(TemporalType.DATE)
+	private Date f_envio;
 	
 	@Column(name="direccion")
 	@Size(min=5,max=50)
@@ -62,21 +67,27 @@ public class Orden {
 		this.id_orden = id_orden;
 	}
 
-	public String getF_orden() {
+
+	
+	public Date getF_orden() {
 		return f_orden;
 	}
 
-	public void setF_orden(String f_orden) {
+
+	public void setF_orden(Date f_orden) {
 		this.f_orden = f_orden;
 	}
 
-	public String getF_envio() {
+
+	public Date getF_envio() {
 		return f_envio;
 	}
 
-	public void setF_envio(String f_envio) {
+
+	public void setF_envio(Date f_envio) {
 		this.f_envio = f_envio;
 	}
+
 
 	public String getDireccion() {
 		return direccion;

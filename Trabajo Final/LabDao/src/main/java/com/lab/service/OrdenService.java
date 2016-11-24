@@ -1,6 +1,8 @@
 package com.lab.service;
 
 
+import java.util.Date;
+
 import com.lab.entities.Orden;
 
 public interface OrdenService {
@@ -16,12 +18,12 @@ public interface OrdenService {
 	
 
 	
-	Iterable<Orden> findByFechaOrden(String fo1,String fo2);
+	Iterable<Orden> findByF_ordenBetween(Date date1,Date date2);
 	
 	Iterable<Orden> getOrdenByFarmacia(int id);
 
-	Iterable<Orden> getFarmaciaOrderByMontoTotalDESC();
+	Iterable<Orden> getFarmaciaOrderByMontoTotalDESC(int itd);
 	
-	int countOrdenByFarmacia();
+	int countOrdenByFarmacia(int id);
 	
 }

@@ -1,5 +1,7 @@
 package com.lab.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,9 +44,9 @@ public class OrdenServiceImpl implements OrdenService {
 	
 
 	@Override
-	public Iterable<Orden> findByFechaOrden(String fo1, String fo2) {
+	public Iterable<Orden> findByF_ordenBetween(Date date1, Date date2) {
 		// TODO Auto-generated method stub
-		return ordenRepository.findByF_orden(fo1, fo2);
+		return ordenRepository.findByF_ordenBetween(date1, date2);
 	}
 	
 	
@@ -57,15 +59,15 @@ public class OrdenServiceImpl implements OrdenService {
 	}
 
 	@Override
-	public Iterable<Orden> getFarmaciaOrderByMontoTotalDESC() {
+	public Iterable<Orden> getFarmaciaOrderByMontoTotalDESC(int id) {
 		// TODO Auto-generated method stub
-		return ordenRepository.findByMontototalDESC();
+		return ordenRepository.findByMontototalDESC(id);
 	}
 	
 	@Override
-	public int countOrdenByFarmacia() {
+	public int countOrdenByFarmacia(int id) {
 		// TODO Auto-generated method stub
-		return ordenRepository.countOrdenFarmacia();
+		return ordenRepository.countOrdenFarmacia(id);
 	}
 
 
